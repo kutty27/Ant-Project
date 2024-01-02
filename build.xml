@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name = "Compile and Run" default="run" basedir=".">
+
+<target name="compile">
+	<javac srcdir="./src/com" includeantruntime="true" destdir="./readDir" includes="*.java"></javac>
+</target>
+
+<target name="run" depends="compile">
+	<java classname="com.Demo1">
+			<classpath path="readDir" />
+	</java>
+		
+		<java classname="com.Demo2">
+			<classpath path="readDir" />
+		</java>
+</target>
+
+</project>
