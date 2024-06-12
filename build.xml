@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Car Project" default="run">
+
+	<property file="build.properties" />
+	
+	<target name="clean">
+		<delete verbose="true" dir="${bin.dir}"/>
+		<delete verbose="true" dir="${report.dir}"/>
+	</target>
+	
+	<target name="create" depends="clean">
+		<mkdir dir="${bin.dir}" /> 
+		<mkdir dir="${report.dir}" />
+	</target>
+	
+	<target name="compile" depends="create">
+		<javac includeantruntime="true" srcdir="${src.dir}" destdir="${bin.dir}" />
+	</target>
+	
+	<target name="copy" depends="compile">
+		<copy todir="${report.dir}">
+				<fileset dir="CarProject/src">
+					<include name="**/*.java" />
+				</fileset> 
+			</copy>
+	<copy todir="${report.dir}">
+		<fileset dir="CarProject/bin">
+			<include name="**/*.class" />
+		</fileset> 
+	</copy>
+	</target>
+	
+	<target name="run" depends="copy">
+		<java classname="Driver">
+			<classpath path="${bin.dir}" />
+		</java>
+	</target>
+	
+</project>
